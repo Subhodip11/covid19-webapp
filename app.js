@@ -89,6 +89,7 @@ app.get('/worldData', (req, res) => {
 
 
         axios.get('https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/news/get-vaccine-news/0', payload2).then(async worldNews => {
+            // console.log(worldNews.data)
             res.render('worldData', { data: await worldData.data, newsData: await worldNews.data['news'] })
         }).catch(err => console.log(err))
 
