@@ -81,7 +81,7 @@ app.get('/worldData', (req, res) => {
     const payload2 = {
         "method": "GET",
         "headers": {
-            "x-rapidapi-key": process.env.API_KEy,
+            "x-rapidapi-key": process.env.API_KEY,
             "x-rapidapi-host": process.env.RAPID_API_HOST
         }
     }
