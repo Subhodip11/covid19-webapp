@@ -73,16 +73,16 @@ app.get('/worldData', (req, res) => {
     const payload = {
         "method": "GET",
         "headers": {
-            "x-rapidapi-key": process.env.API_KEY,
-            "x-rapidapi-host": process.env.RAPID_API_HOST
+            "x-rapidapi-key": "ce0e98a091msh6ced78a1dff746dp138d91jsneed4e9fe9403",
+            "x-rapidapi-host": "vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com"
         }
     };
 
     const payload2 = {
         "method": "GET",
         "headers": {
-            "x-rapidapi-key": process.env.API_KEY,
-            "x-rapidapi-host": process.env.RAPID_API_HOST
+            "x-rapidapi-key": "ce0e98a091msh6ced78a1dff746dp138d91jsneed4e9fe9403",
+            "x-rapidapi-host": "vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com"
         }
     }
     axios.get('https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/npm-covid-data/countries', payload).then(async worldData => {
