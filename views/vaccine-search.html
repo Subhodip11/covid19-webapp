@@ -169,7 +169,7 @@
         </div>
         </div>
     </nav>
-    <div class="header text-center my-2">
+    <div class="text-center">
         <h2>Vaccine Availability Status</h2>
     </div>
     <div class="container-fluid  w-auto d-flex flex-row align-items-center justify-content-center my-lg-2" id="search_state_and_district_container">
@@ -329,8 +329,9 @@
         data.forEach(ele => {
             let slot = ele['slots'],
                 slot_availability = '';
+            console.log(slot)
             slot.forEach(e => {
-                slot_availability += `<h6>${e}</h6>`;
+                slot_availability += `<h6>seats: ${e.seats}, time: ${e.time}</h6>`;
             })
             addRow += `
                 <tr scope='row'>
@@ -366,7 +367,8 @@
                 let slot = data[i].slots,
                     slot_availability = '';
                 slot.forEach(e => {
-                    slot_availability += `<h6>${e}</h6>`;
+
+                    slot_availability += `<h6>seats: ${e.seats}, time: ${e.time}</h6>`;
                 })
                 addRow += `
                 <tr scope='row'>
@@ -402,8 +404,9 @@
                     // console.log(text, data[i].name.toLowerCase());
                     let slot = data[i].slots,
                         slot_availability = '';
+                    console.log(slot)
                     slot.forEach(e => {
-                        slot_availability += `<h6>${e}</h6>`;
+                        slot_availability += `<h6>seats: ${e.seats}, time: ${e.time}</h6>`;
                     })
                     addRow = `
                 <tr scope='row'>
