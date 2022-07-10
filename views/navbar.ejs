@@ -1,0 +1,101 @@
+<style>
+    nav {
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        position: relative;
+        display: flex;
+        padding: 1rem;
+        z-index: 20;
+        height: auto;
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+    
+    .header {
+        width: fit-content;
+        height: auto;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        /*border: 1px solid black;*/
+    }
+    
+    .header h1 {
+        font-size: calc(24px - 5%);
+        display: flex;
+        align-items: center;
+    }
+    
+    .header h1 img {
+        height: 24px;
+        width: 24px;
+    }
+    
+    .navigators {
+        /*border: 1px solid black;*/
+        width: fit-content;
+        height: auto;
+        position: fixed;
+        top: 2%;
+        left: 1%;
+    }
+    
+    .navigators .navigators-ul {
+        display: none;
+        flex-direction: column;
+        background-color: white;
+        padding: 0.5rem calc(2vw + 5px);
+    }
+    
+    .navigators .navigators-ul span {
+        padding: 0.5rem 0;
+    }
+    
+    .navigators .navigators-ul span a {
+        color: black;
+        text-decoration: none;
+    }
+    
+    .make-ul-active-btn {
+        display: inline-block;
+        transform: rotate(-90deg);
+        background-color: transparent;
+        color: black;
+        font-size: 1.3rem;
+        border: none;
+        outline: none;
+        cursor: pointer;
+    }
+    
+    @media screen and (max-width:600px) {
+        nav {
+            justify-content: flex-end;
+        }
+    }
+</style>
+<nav>
+
+    <div class="navigators">
+
+        <button class="make-ul-active-btn">|||</button>
+        <div class="navigators-ul">
+            <span><a href="/">Home</a></span>
+            <span><a href="/worldData">World Data</a></span>
+            <span><a href="/vaccineSearch">Vaccine Availablity District Wise</a></span>
+            <span><a href="/vaccineSearchPinWise">Vaccine Availablity Pincode Wise</a></span>
+        </div>
+    </div>
+    <div class="header">
+        <h1>C<img src='./images/covid19_logo.png' />vid19 CASE STATISTICS</h1>
+    </div>
+    </div>
+</nav>
+<script>
+    let cnt = 0;
+    document.getElementsByClassName('make-ul-active-btn')[0].addEventListener('click', (e) => {
+        if (cnt % 2 == 0)
+            document.getElementsByClassName('navigators-ul')[0].style.display = 'flex'
+        else
+            document.getElementsByClassName('navigators-ul')[0].style.display = 'none'
+        cnt++;
+    })
+</script>

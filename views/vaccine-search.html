@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./images/favicon/android-icon-36x36.png" type="image/gif" sizes="16x16">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <title>Vaccine Search District Wise</title>
+</head>
+<style>
+    #search-bar,
+    #search-bar-2 {
+        width: 15%;
+        border-radius: 0.5rem;
+        outline: none;
+        border: 1px solid gray;
+    }
+    
+    @media screen and (max-width:800px) {
+        #search-bar,
+        #search-bar-2 {
+            width: auto;
+            font-size: 0.7rem;
+            align-self: flex-start;
+        }
+        #btnClear {
+            font-size: 0.5rem;
+            width: fit-content;
+        }
+        #search_state_and_district_container {
+            /* border: 1px solid black; */
+            margin: 1rem 0.2rem;
+            margin-bottom: 0;
+        }
+        #filter,
+        #filter2,
+        #filter3 {
+            border-radius: 0.3rem;
+            margin: 0 0.1rem;
+            font-size: 0.7rem;
+        }
+        #filter2 {
+            width: 70%;
+        }
+        #filter_container {
+            padding: 0 auto;
+            /* border: 1px solid red; */
+            display: block;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+        }
+        #table_container {
+            width: 100%;
+            overflow-x: auto;
+        }
+        #center_name_container {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            /* border: 1px solid black; */
+            margin-bottom: 0.5rem;
+        }
+        #search-by-center-name {
+            font-size: 0.7rem;
+            margin: 0 auto;
+        }
+        #show_all_data {
+            font-size: 0.7rem;
+        }
+        #filter {
+            margin: 1rem 0;
+            border: 1px solid black;
+        }
+    }
+</style>
+<style>
+    nav {
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        position: relative;
+        display: flex;
+        padding: 1rem;
+        z-index: 20;
+        height: auto;
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+    
+    .header {
+        width: fit-content;
+        height: auto;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        /*border: 1px solid black;*/
+    }
+    
+    .header h1 {
+        font-size: calc(24px - 5%);
+        display: flex;
+        align-items: center;
+    }
+    
+    .header h1 img {
+        height: 24px;
+        width: 24px;
+    }
+    
+    .navigators {
+        /*border: 1px solid black;*/
+        width: fit-content;
+        height: auto;
+        position: fixed;
+        top: 2%;
+        left: 1%;
+    }
+    
+    .navigators .navigators-ul {
+        display: none;
+        flex-direction: column;
+        background-color: white;
+        padding: 0.5rem calc(2vw + 5px);
+    }
+    
+    .navigators .navigators-ul span {
+        padding: 0.5rem 0;
+    }
+    
+    .navigators .navigators-ul span a {
+        color: black;
+        text-decoration: none;
+    }
+    
+    .make-ul-active-btn {
+        display: inline-block;
+        transform: rotate(-90deg);
+        background-color: transparent;
+        color: black;
+        font-size: 1.3rem;
+        border: none;
+        outline: none;
+        cursor: pointer;
+    }
+    
+    @media screen and (max-width:600px) {
+        nav {
+            justify-content: flex-end;
+        }
+    }
+</style>
+
+<body>
+    <nav>
+
+        <div class="navigators">
+
+            <button class="make-ul-active-btn">|||</button>
+            <div class="navigators-ul">
+                <span><a href="/">Home</a></span>
+                <span><a href="/worldData">World Data</a></span>
+                <span><a href="/vaccineSearch">Vaccine Availablity District Wise</a></span>
+                <span><a href="/vaccineSearchPinWise">Vaccine Availablity Pincode Wise</a></span>
+            </div>
+        </div>
+        <div class="header">
+            <h1>C<img src='./images/covid19_logo.png' />vid19 CASE STATISTICS</h1>
+        </div>
+        </div>
+    </nav>
+    <div class="header text-center my-2">
+        <h2>Vaccine Availability Status</h2>
+    </div>
+    <div class="container-fluid  w-auto d-flex flex-row align-items-center justify-content-center my-lg-2" id="search_state_and_district_container">
+        <input class="mx-2 my-2" type="text" id="search-bar" placeholder="Search for State/Uts" list="data-list">
+        <datalist id="data-list"></datalist>
+        <input class="mx-2 my-2" type="text" id="search-bar-2" placeholder="Search District" list="data-list-2">
+        <datalist id="data-list-2"></datalist>
+        <button class="btn btn-danger" id="btnClear" data-bs-toggle="tooltip" data-bs-placement="top" title="Clears All Fields">Clear fields</button>
+    </div>
+    <div class="container-fluid d-flex flex-row justify-content-between my-lg-2" id='filter_container'>
+        <div class="container-fluid d-flex flex-row justify-content-around align-items-center" id="filter">
+            <label for="filter">Filter: </label>
+            <select id="filter">
+                <option>Fee Type</option>
+                <option>Free</option>
+                <option>Paid</option>
+            </select>
+            <select id="filter2">
+                <option selected>Minimum Age</option>
+                <option >Above 45</option>
+                <option >Greater than 18 less than 45</option>
+            </select>
+            <select id="filter3">
+               <option selected>Vaccine Name</option>
+               <option>COVISHIELD</option>
+               <option>COVAXIN</option>
+            </select>
+        </div>
+        <div class="container-fluid text-end" id="center_name_container">
+            <label for="search-by-center-name">Center: </label>
+            <input type="search" name="search-by-center-name" id="search-by-center-name" placeholder="Search By Center Name">
+            <button class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Click To Get Original Data Format" id="show_all_data">Show All Data</button>
+        </div>
+    </div>
+    <div class="container-fluid" id="table_container">
+        <table class="table table-bordered" id="table">
+            <thead>
+                <tr>
+                    <th scope="col">Center Name</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Vaccine Name</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Available Vaccine Capacity</th>
+                    <th scope="col">Fee Type</th>
+                    <th scope="col">Fee</th>
+                    <th scope="col">Slots</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="7" style="text-align: center;">
+                        <h3>Select a district to View Current Stats</h3>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+<script>
+    let cnt = 0;
+    document.getElementsByClassName('make-ul-active-btn')[0].addEventListener('click', (e) => {
+        if (cnt % 2 == 0)
+            document.getElementsByClassName('navigators-ul')[0].style.display = 'flex'
+        else
+            document.getElementsByClassName('navigators-ul')[0].style.display = 'none'
+        cnt++;
+    })
+</script>
+<script>
+    let date = new Date();
+    let dateString = date.getUTCDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear();
+    // console.log(dateString)
+    fetch('https://cdn-api.co-vin.in/api/v2/admin/location/states')
+        .then(response => {
+            response.json().then(data => {
+                appendToDataList(data['states']);
+                getStateIDFromSearchBar(data['states']);
+            }).catch(err => console.log(err));
+        }).catch(err => console.log(err));
+
+    function appendToDataList(data) {
+        for (let i = 0; i < data.length; i++) {
+            let option = document.createElement('option');
+            option.setAttribute('value', data[i].state_id + '. ' + data[i].state_name)
+            document.getElementById('data-list').append(option);
+        }
+    }
+
+    function getStateIDFromSearchBar(data) {
+        let id = '',
+            cnt = 0;
+        document.getElementById('search-bar').addEventListener('input', e => {
+            let text = e.target.value;
+
+            // console.log(text);
+            for (let i = 0; i < data.length; i++) {
+                if (text.toLowerCase().includes(data[i].state_name.toLowerCase())) {
+                    id = data[i].state_id;
+                    fetch('https://cdn-api.co-vin.in/api/v2/admin/location/districts/' + id)
+                        .then(response => {
+                            response.json().then(data => {
+                                // console.log(data);
+                                document.getElementById('data-list-2').innerHTML = '';
+                                appendToDataList2(data['districts']);
+                                getDistrictIdFromSearchBar2(data['districts']);
+                            }).catch(err => console.log(err));
+                        }).catch(err => console.log(err));
+                    break;
+                }
+            }
+
+        })
+    }
+
+    function appendToDataList2(data) {
+        for (let i = 0; i < data.length; i++) {
+            let option = document.createElement('option');
+            option.setAttribute('value', data[i].district_id + '. ' + data[i].district_name)
+            document.getElementById('data-list-2').append(option);
+        }
+    }
+
+    function getDistrictIdFromSearchBar2(data) {
+        let id = '';
+        document.getElementById('search-bar-2').addEventListener('input', e => {
+            let text = e.target.value;
+            for (let i = 0; i < data.length; i++) {
+                if (text.toLowerCase().includes(data[i].district_name.toLowerCase())) {
+                    id = data[i].district_id;
+                    fetch('https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id=' + id.toString() + '&date=' + dateString.toString())
+                        .then(response => {
+                            response.json().then(data => {
+                                exportDataToTable(data['sessions']);
+
+                                document.getElementById('filter').addEventListener('change', e => {
+                                    if (!(e.target.value === 'Fee Type')) {
+                                        // console.log('entered into filter event listener ' + e.target.value)
+                                        filterByType(data['sessions'], e.target.value);
+                                    }
+                                })
+                            }).catch(err => console.log(err))
+                        }).catch(err => console.log(err));
+                    break;
+                }
+            }
+
+
+
+        })
+    }
+
+    function exportDataToTable(data) {
+        // console.log('entered in export data to table ');
+        let addRow = '';
+        searchByCenterName(data);
+        data.forEach(ele => {
+            let slot = ele['slots'],
+                slot_availability = '';
+            slot.forEach(e => {
+                slot_availability += `<h6>${e}</h6>`;
+            })
+            addRow += `
+                <tr scope='row'>
+                  <td>${ele['name']}</td>
+                  <td>${ele['block_name']}, ${ele['district_name']}, ${ele['state_name']}, ${ele['pincode']}</td>
+                  <td>${ele['vaccine']}</td>
+                  <td>${ele['min_age_limit']}</td>   
+                  <td><p><b>D1</b> - ${ele['available_capacity_dose1']}</p>
+                      <p><b>D2</b> - ${ele['available_capacity_dose2']}</p>                    
+                  </td>
+                  <td>${ele['fee_type']}</td>
+                  <td>${ele['fee']}</td>
+                  <td>${slot_availability}</td>
+                </tr>
+               `
+        })
+        if (addRow === '' || addRow === ' ')
+            document.getElementById('table').children[1].innerHTML = `<tr colspan='8'><td style='text-align:center'><h3>Data Not Found For Selected District</h3></td></tr>`;
+        else
+            document.getElementById('table').children[1].innerHTML = addRow;
+
+
+    }
+
+
+    function filterByType(data, selectedField) {
+        // console.log('entered in fee type filter');
+
+        let addRow = '';
+        for (let i = 0; i < data.length; i++) {
+            if (selectedField.toLowerCase().includes(data[i].fee_type.toLowerCase()) || ((selectedField.toString() === 'Above 45' && data[i].min_age_limit == 45) || (selectedField.toString() === 'Greater than 18 less than 45' && data[i].min_age_limit == 18)) || (selectedField.toString().includes(data[i].vaccine))) {
+                // console.log(selectedField, data[i].min_age_limit)
+                let slot = data[i].slots,
+                    slot_availability = '';
+                slot.forEach(e => {
+                    slot_availability += `<h6>${e}</h6>`;
+                })
+                addRow += `
+                <tr scope='row'>
+                  <td>${data[i].name}</td>
+                  <td>${data[i].block_name}, ${data[i].district_name}, ${data[i].state_name}, ${data[i].pincode}</td>
+                  <td>${data[i].vaccine}</td>
+                  <td>${data[i].min_age_limit}</td>   
+                  <td><p><b>D1</b> - ${data[i].available_capacity_dose1}</p>
+                      <p><b>D2</b> - ${data[i].available_capacity_dose2}</p>                    
+                  </td>
+                  <td>${data[i].fee_type}</td>
+                  <td>${data[i].fee}</td>
+                  <td>${slot_availability}</td>
+                </tr>
+               `
+            }
+
+        }
+
+        document.getElementById('table').children[1].innerHTML = addRow;
+
+    }
+
+
+    function searchByCenterName(data) {
+        let addRow = '';
+        // console.log('Entered in search')
+        document.getElementById('search-by-center-name').addEventListener('input', (e) => {
+
+            let text = e.target.value.toString().toLowerCase();
+            for (let i = 0; i < data.length; i++) {
+                if (data[i].name.toLowerCase().includes(text)) {
+                    // console.log(text, data[i].name.toLowerCase());
+                    let slot = data[i].slots,
+                        slot_availability = '';
+                    slot.forEach(e => {
+                        slot_availability += `<h6>${e}</h6>`;
+                    })
+                    addRow = `
+                <tr scope='row'>
+                  <td>${data[i].name}</td>
+                  <td>${data[i].block_name}, ${data[i].district_name}, ${data[i].state_name}, ${data[i].pincode}</td>
+                  <td>${data[i].vaccine}</td>
+                  <td>${data[i].min_age_limit}</td>   
+                  <td><p><b>D1</b> - ${data[i].available_capacity_dose1}</p>
+                      <p><b>D2</b> - ${data[i].available_capacity_dose2}</p>                    
+                  </td>
+                  <td>${data[i].fee_type}</td>
+                  <td>${data[i].fee}</td>
+                  <td>${slot_availability}</td>
+                </tr>
+               `
+                }
+            }
+            document.getElementById('table').children[1].innerHTML = addRow;
+            document.getElementById('show_all_data').addEventListener('click', e => {
+                exportDataToTable(data);
+            })
+
+        })
+    }
+
+    document.getElementById('btnClear').addEventListener('click', e => {
+        document.getElementById('search-bar').value = '';
+        document.getElementById('search-bar-2').value = '';
+        document.getElementById('filter').getElementsByTagName('option')[0].selected = 'selected';
+        document.getElementById('filter2').getElementsByTagName('option')[0].selected = 'selected';
+        document.getElementById('filter3').getElementsByTagName('option')[0].selected = 'selected';
+    });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+</html>

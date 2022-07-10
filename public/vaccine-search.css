@@ -1,0 +1,120 @@
+/* Stylesheet for designing the search bar for vaacine slot */
+
+.vaccine-header1 {
+    border: 1px solid black;
+    width: 98%;
+    margin: 0 auto;
+    padding: 0.1rem 1rem;
+}
+
+.checkForVaccine {
+    height: auto;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+.checkForVaccine select {
+    width: 20rem;
+    height: 3rem;
+    font-size: 1rem;
+    margin: 0 auto;
+}
+
+#checkForVaccine,
+#selectDistrict {
+    border-radius: 1rem;
+    margin-right: 0.5rem;
+    outline: none;
+}
+
+.selectionForVaccineCheck {
+    border: none;
+}
+
+.tableForVaccineAvailabilty {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    border: 1px solid black;
+}
+
+#table2 {
+    margin: 0 auto;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#table2,
+#table2 thead {
+    border: 1px solid black;
+}
+
+#table2 thead tr th {
+    border: 1px solid black;
+    padding: 0.5rem 1rem;
+}
+
+.checkForVaccine button {
+    outline: none;
+    font-size: 1.3rem;
+    background-color: rgb(253, 57, 57);
+    color: white;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    margin: 0.5rem;
+}
+
+#table2 thead tr th {
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    background-color: rgb(39, 38, 38);
+    color: white;
+    border: 1px solid white;
+}
+
+#table2 tbody tr td {
+    font-size: 1.1rem;
+    padding: 0.2rem 0.5rem;
+    border-left: 1px solid black;
+}
+
+#table2 tbody {
+    border: 1px solid black;
+}
+
+#table2 tbody tr:nth-child(2n) {
+    background-color: rgb(223, 221, 221);
+}
+
+@media screen and (max-width:800px) {
+    #table2 {
+        font-size: 1rem;
+    }
+    .tableForVaccineAvailabilty {
+        height: auto;
+        width: 100%;
+        overflow-x: scroll;
+    }
+    .selectionForVaccineCheck {
+        border: none;
+        display: flex;
+        flex-wrap: nowrap;
+    }
+    #checkForVaccine,
+    #selectDistrict {
+        font-size: 8px;
+        width: 6.25rem;
+    }
+    #closeBtn {
+        width: fit-content;
+        font-size: 0.5rem;
+    }
+    #table2 thead tr th {
+        font-size: 12px;
+    }
+    #table2 tbody tr td {
+        font-size: 10px;
+    }
+}

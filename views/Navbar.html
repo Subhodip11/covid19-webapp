@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    
+    nav {
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        position: relative;
+        display: flex;
+        padding: 1rem;
+    }
+    
+    .header {
+        width: fit-content;
+        height: auto;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        /*border: 1px solid black;*/
+    }
+    
+    .header h1 {
+        display: flex;
+        align-items: center;
+    }
+    
+    .header h1 img {
+        height: 24px;
+        width: 24px;
+    }
+    
+    .navigators {
+        /*border: 1px solid black;*/
+        width: fit-content;
+        height: auto;
+        position: fixed;
+        top: 2%;
+        left: 1%;
+    }
+    
+    .navigators .navigators-ul {
+        display: none;
+        flex-direction: column;
+    }
+    
+    .navigators .navigators-ul span {
+        padding: 0.5rem 0;
+    }
+    
+    .make-ul-active-btn {
+        display: inline-block;
+        transform: rotate(-90deg);
+        background-color: transparent;
+        color: black;
+        font-size: 1.3rem;
+        border: none;
+        outline: none;
+        cursor: pointer;
+    }
+</style>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light text-center">
+        <div class="container-fluid text-center w-100">
+            <div class="navigators">
+
+                <button class="make-ul-active-btn">|||</button>
+                <div class="navigators-ul">
+                    <span>Home</span>
+                    <span>Country Data</span>
+                    <span>Vaccine Availablity District Wise</span>
+                    <span>Vaccine Availablity Pincode Wise</span>
+                </div>
+            </div>
+            <div class="header">
+                <h1>C<img src='../public/images/covid19_logo.png' />vid19 CASE STATISTICS</h1>
+            </div>
+        </div>
+    </nav>
+</body>
+<script>
+    let cnt = 0;
+    document.getElementsByClassName('make-ul-active-btn')[0].addEventListener('click', (e) => {
+        if (cnt % 2 == 0)
+            document.getElementsByClassName('navigators-ul')[0].style.display = 'flex'
+        else
+            document.getElementsByClassName('navigators-ul')[0].style.display = 'none'
+        cnt++;
+    })
+</script>
+
+</html>

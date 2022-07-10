@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./images/favicon/android-icon-36x36.png" type="image/gif" sizes="16x16">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <title>Covid19 India </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/index.css" />
+    <link rel="stylesheet" href="/index_1.css" />
+    <link rel="stylesheet" href="/index_2.css" />
+
+</head>
+
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light text-center">
+        <div class="container-fluid text-center w-100">
+            <h1 class="d-inline mx-auto">Covid 19 India Data</h1>
+        </div>
+    </nav>
+    <div id="carouselExampleIndicators" class="carousel slide w-100" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner" id="carousel-images-container">
+            <div class="carousel-item active">
+                <img src="./images/iStock-1204033162(3)-1592828634.jpg" class="d-block w-100 image-cards" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="./images/mapImages.jpg" class="d-block w-100 image-cards" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="./images/80874440.png" class="d-block w-100 image-cards" alt="...">
+
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <div class="info-header">
+        <div class="total-cases-container">
+            <div id="cases-statistics">
+                <h1>Overall Case Statistics Of India</h1>
+                <h3></h3>
+            </div>
+            <div id="active-cases">
+                <p></p>
+                <p>Active Cases</p>
+
+            </div>
+            <div class="cases-card-container">
+                <div class="cases-card" id="total-cases-card">
+                    <h2>Total Cases</h2>
+                </div>
+                <div class="cases-card" id="recovered-cases-card">
+                    <h2>Recovery Cases</h2>
+                </div>
+                <div class="cases-card" id="death-cases-card">
+                    <h2>Death Cases </h2>
+                </div>
+            </div>
+        </div>
+        <div class="total-vaccination-container">
+            <div id="vaccine-status-header">
+                <img src="./images/covid-19-vaccine-afp1.jpg" alt="" style="display: inline;">
+                <div class="vaccination-dose-status"></div>
+            </div>
+            <div id="vaccine-status-footer">
+                <div class="sample-test-status"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="table-covid19-details-container">
+        <form action="/district" method="post">
+            <table class="table-covid19-details" id="table1">
+                <thead>
+                    <tr>
+                        <td colspan="5" style="text-align: center; padding-top: 0.3rem; padding-bottom: 0.3rem;">
+                            <h2>State-Wise Status</h2>
+                        </td>
+                        <td colspan="3" style="text-align: end;"><label for="search-bar" id="search-by-state-label">Search :</label>
+                            <input type="search" id="search-by-state" placeholder="Search by state" name="seacrh-bar">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>States</td>
+                        <td>Total Confirmed</td>
+                        <td style="background-color: rgb(120, 120, 238); color:white;">Active Cases</td>
+                        <td style="background-color: rgb(7, 250, 7); color:white;">Total Recovered</td>
+                        <td style="background-color: rgb(243, 39, 39); color:white;">Total Deaths</td>
+                        <td style="background-color: rgb(120, 120, 238); color:white;">Active ratio</td>
+                        <td style="background-color: rgb(7, 250, 7); color:white;">Discharge Ratio</td>
+                        <td style="background-color: rgb(243, 39, 39); color:white;">Death Ratio</td>
+                    </tr>
+
+                </thead>
+                <tbody></tbody>
+                <tfoot>
+                    <tr>
+                        <td>States</td>
+                        <td>Total Confirmed</td>
+                        <td style="background-color: rgb(120, 120, 238); color:white;">Active Cases</td>
+                        <td style="background-color: rgb(7, 250, 7); color:white;">Total Recovered</td>
+                        <td style="background-color: rgb(243, 39, 39); color:white;">Total Deaths</td>
+                        <td style="background-color: rgb(120, 120, 238); color:white;">Active ratio</td>
+                        <td style="background-color: rgb(7, 250, 7); color:white;">Discharge Ratio</td>
+                        <td style="background-color: rgb(243, 39, 39); color:white;">Death Ratio</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </form>
+    </div>
+
+    <p style="color: red; text-align: end;">*Note:- To get particular state data select a particular state</p>
+
+    <div class="container-fluid" id="world_cases">
+        <a href='/worldData'>
+            <h2>Click Here To Check Country Wise Data</h2>
+        </a>
+    </div>
+    <div class="conatiner-fluid" id="vaccine_cases">
+        <a href='/vaccineSearch'>
+            <h2>Click Here To Check For Vaccine Availability District Wise</h2>
+        </a>
+    </div>
+    <div class="conatiner-fluid" id="vaccine_cases_pin_wise">
+        <a href='/vaccineSearchPinWise'>
+            <h2>Click Here To Check For Vaccine Availability Pin Wise</h2>
+        </a>
+    </div>
+
+</body>
+<script>
+    let maxData = 0,
+        globalObject = '';
+    //Api call
+    // const CORS_PRE_FIX = 'https://cors-anywhere.herokuapp.com/';
+    const covid19ApiDataFetch = fetch('https://api.covid19india.org/data.json');
+    covid19ApiDataFetch.then((res) => {
+        const covid19JsonData = res.json();
+        covid19JsonData.then((data) => {
+            // console.log(data);
+            showTotalCasesIndia(data);
+            exportDataToTable(data);
+            globalObject = data['statewise'];
+            vaccination_dose(data['tested']);
+            // maxData = new getMaxActiveCasesStateWise(data);
+            // let arrayOfMaxCases = maxData.MaxActiveCases();
+            // showTopCasesIndia(arrayOfMaxCases);
+        }).catch((err) => {
+            console.log(err)
+        })
+    }).catch((err) => {
+        console.log(err);
+    });
+    //api call ends here
+    //Top cases Data addition starts here
+    //at present it is not called
+    function showTopCasesIndia(data) {
+        let top_cases = document.getElementsByClassName('top-cases');
+        for (let i = 0; i < top_cases.length; i++) {
+            top_cases[i].innerHTML = `
+            <h2>${data[i].state}</h2>
+            <h3>Total Confirmed Cases : ${data[i].total}</h3>
+            <h3>Active Cases : ${data[i].active}</h3>
+            <h3>Death Cases : ${data[i].deaths}</h3>
+            <h4>Last Updated on ${data[i].lastUpdated}</h3>   
+            `
+        }
+    }
+    //Top Cases Data addition ends here
+    //Total Cases Data are added here
+    function showTotalCasesIndia(data) {
+        let obj = data['statewise'];
+        let obj2 = data['cases_time_series'];
+        let date = obj[0]['lastupdatedtime'].split(' ');
+        document.getElementById('cases-statistics').children[1].innerHTML = 'Last Updated on ' + date[0] + ' at ' + date[1];
+        let active_ratio_cal = (Number(obj[0]['active']) / Number(obj[0]['confirmed'])) * 100,
+            recovered_ratio_cal = (Number(obj[0]['recovered']) / Number(obj[0]['confirmed'])) * 100,
+            death_ratio_cal = (Number(obj[0]['deaths']) / Number(obj[0]['confirmed'])) * 100;
+        document.getElementById('active-cases').children[0].innerHTML = Number(obj[0]['active']).toLocaleString('en-US') + ' (' + Number(active_ratio_cal.toFixed(2)).toLocaleString('en-US') + '%)';
+        document.getElementById('total-cases-card').innerHTML = `<h2 style="display:inline">Total Cases</h2><span class="cases-card-inner-content"><h3>${Number(obj[0]['confirmed']).toLocaleString('en-US')}</h3><h3>(${Number(obj2[obj2.length-1]['dailyconfirmed']).toLocaleString('en-US')} &#x2191)</h3></span>`;
+        document.getElementById('recovered-cases-card').innerHTML = `<h2 style='display:inline'>Recovered Cases</h2><p style="display:inline"> (${Number(recovered_ratio_cal.toFixed(2)).toLocaleString('en-US')}%)</p>
+        <span class="cases-card-inner-content"><h3>${Number(obj[0]['recovered']).toLocaleString('en-US')} </h3><h3>(${Number(obj2[obj2.length-1]['dailyrecovered']).toLocaleString('en-US')} &#x2191)</h3></span>`
+        document.getElementById('death-cases-card').innerHTML = `<h2 style="display:inline">Death Cases</h2><p style="display:inline"> (${Number(death_ratio_cal.toFixed(2)).toLocaleString('en-US')}%)</p><span class="cases-card-inner-content"><h3>${Number(obj[0]['deaths']).toLocaleString('en-US')} </h3><h3>(${Number(obj2[obj2.length-1]['dailydeceased']).toLocaleString('en-US')} &#x2191)</h3></span>`
+    }
+    //Total cases ends here
+    let tableData = document.getElementById('table1'),
+        stateID = 1;
+    // Adding data from api to table
+    function exportDataToTable(data) {
+        const statewiseData = data['statewise'];
+        let storeStateData = [];
+        let addRowDetails = "";
+        Array.from(statewiseData).forEach((ele) => {
+            if (!ele['state'].includes('Total') && !ele['state'].includes('State Unassigned')) {
+                storeStateData.push(ele['state']);
+                let activeRatioCal = ((ele['active'] / ele['confirmed']) * 100).toFixed(2);
+                let recoveredratioCal = ((ele['recovered'] / (ele['confirmed'])) * 100).toFixed(2);
+                let deathRatioCal = ((ele['deaths'] / (ele['confirmed'])) * 100).toFixed(2);
+                addRowDetails += `
+                <tr>
+                    <td><input type='submit' value='${ele['state']}' name='statecode'></td>
+                    <td class="total-confirmed">${Number(ele['confirmed']).toLocaleString('en-US')}</td>
+                    <td class="active-cases">${Number(ele['active']).toLocaleString('en-US')}</td>
+                    <td class="recovered-cases">${Number(ele['recovered']).toLocaleString('en-US')}</td>
+                    <td class="death-cases">${Number(ele['deaths']).toLocaleString('en-US')}</td>
+                    <td class="active-ratio">${Number(activeRatioCal).toLocaleString('en-US')}</td>
+                    <td class="recovered-ratio">${Number(recoveredratioCal).toLocaleString('en-US')}</td>
+                    <td class="death-ratio">${Number(deathRatioCal).toLocaleString('en-US')}</td>
+                </tr>
+                 `;
+            }
+        })
+        tableData.children[1].innerHTML = addRowDetails;
+        searchByState(storeStateData, addRowDetails, statewiseData);
+    }
+    //additon of data to table ends here
+    //Searching for the state that the user wants
+    function searchByState(data, rowDetails, stateWiseData) {
+        let stateData = data;
+        let search = document.getElementById('search-by-state');
+        search.addEventListener('input', (e) => {
+            let text = e.target.value.toString().toLowerCase();
+            let storeText = "";
+            let flag = -1;
+            //searching and storing the state
+            Array.from(stateData).forEach((ele) => {
+                    if (ele.toLowerCase().includes(text)) {
+                        storeText = ele;
+                        flag = 1;
+                        return false;
+                    }
+                })
+                // console.log(storeText, flag);
+            let getStateData = "";
+            //storing the relative information for that state
+            Array.from(stateWiseData).forEach((ele) => {
+                    let k = ele['state'];
+                    if (k.includes(storeText)) {
+                        // console.log('entered' + " " + k);
+                        let activeRatioCal = ((ele['active'] / ele['confirmed']) * 100).toFixed(2);
+                        let recoveredratioCal = ((ele['recovered'] / (ele['confirmed'])) * 100).toFixed(2);
+                        let deathRatioCal = ((ele['deaths'] / (ele['confirmed'])) * 100).toFixed(2);
+                        getStateData += `
+                <tr>
+                  
+                 <td><input type='submit' value='${ele['state']}' name='statecode'></td>
+                 <td class="total-confirmed">${ele['confirmed']}</td>
+                 <td class="active-cases">${ele['active']}</td>
+                 <td class="recovered-cases">${ele['recovered']}</td>
+                 <td class="death-cases">${ele['deaths']}</td>
+                 <td class="active-ratio">${activeRatioCal}</td>
+                 <td class="recovered-ratio">${recoveredratioCal}</td>
+                 <td class="death-ratio">${deathRatioCal}</td>
+                </tr>
+                 `;
+                    }
+                })
+                // console.log(getStateData);
+            if (flag == 1)
+                tableData.children[1].innerHTML = getStateData;
+            else
+                tableData.children[1].innerHTML = "<tr><td colspan='8'><h2 style='text-align:center'>No Records Are Available For The Mentioned State</h2></td></tr>"
+            if (text === '')
+                tableData.children[1].innerHTML = rowDetails;
+        })
+    }
+    //searching ends here
+    function vaccination_dose(data) {
+        let textFormatter = `
+     <h2>${Number(data[data.length-1]['totaldosesadministered']).toLocaleString('en-US')}</h2>
+     <hr>
+     <h3>Total Vaccination Doses</h3>
+    `
+            // console.log(textFormatter);
+        document.querySelector('.vaccination-dose-status').innerHTML = textFormatter;
+        textFormatter = `
+    <h2>${Number(data[data.length-1]['samplereportedtoday']).toLocaleString('en-US')} Samples where tested on ${data[data.length-1]['testedasof']}</h2>
+    <p>Till date ${Number(data[data.length-1]['totalsamplestested']).toLocaleString('en-US')} samples are tested</p>
+    `
+        document.querySelector('.sample-test-status').innerHTML = textFormatter;
+    }
+    //Sorted the data according to the total number of active cases
+    //Class to implement heap sort algo to sort the object of by active cases for key statewise
+    class getMaxActiveCasesStateWise {
+        constructor(data) {
+            this.arr = data['statewise'];
+            this.a = [];
+        }
+        heapsort(a, i, n) {
+            let left = 2 * i + 1,
+                right = 2 * i + 2,
+                min = i;
+            if (left < n && a[left].active < a[min].active)
+                min = left;
+            if (right < n && a[right].active < a[min].active)
+                min = right;
+            if (min != i) {
+                let t = a[i];
+                a[i] = a[min];
+                a[min] = t;
+                this.heapsort(a, min, n);
+            }
+        }
+        heapSortAlgo() {
+            let n = this.a.length;
+            for (let i = Math.floor(this.a.length / 2); i >= 0; i--)
+                this.heapsort(this.a, i, n);
+            for (let i = n - 1; i >= 0; i--) {
+                let temp = this.a[i];
+                this.a[i] = this.a[0];
+                this.a[0] = temp;
+                this.heapsort(this.a, 0, i);
+            }
+            return this.a;
+        }
+        MaxActiveCases() {
+            // let arr = data['statewise'];
+            // let a = [];
+            Array.from(this.arr).forEach((ele) => {
+                    if (!ele['state'].includes('Total') && !ele['state'].includes('State Unassigned'))
+                        this.a.push({
+                            active: Number(ele['active']),
+                            state: ele['state'],
+                            total: ele['confirmed'],
+                            deaths: ele['deaths'],
+                            lastUpdated: ele['lastupdatedtime']
+                        });
+                })
+                // console.log(a);
+            let b = this.heapSortAlgo();
+            return b;
+        }
+    }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+
+
+</html>

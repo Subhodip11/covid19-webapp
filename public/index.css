@@ -1,0 +1,151 @@
+/* This Stylesheet is only for designing the table data */
+
+.table-covid19-details-container {
+    height: auto;
+    width: 100%;
+    border: 1px solid gray;
+    padding: 0 auto;
+}
+
+.table-covid19-details {
+    width: 100%;
+    border-collapse: separate;
+}
+
+.table-covid19-details tbody tr:nth-child(2n+1) {
+    background-color: rgb(218, 216, 216);
+}
+
+.table-covid19-details thead td,
+.table-covid19-details tfoot td {
+    padding: 0.7rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    background-color: #FFE042;
+}
+
+.table-covid19-details tbody td {
+    font-size: 0.9rem;
+    padding: 0.3rem 0.5rem;
+}
+
+.table-covid19-details tbody tr td input {
+    background: transparent;
+    border: none;
+    outline: none;
+    text-decoration: underline;
+    color: rgb(39, 39, 192);
+}
+
+.table-covid19-details tbody tr td input:hover {
+    cursor: pointer;
+}
+
+.table-covid19-details tbody tr td input:active {
+    color: rgb(212, 44, 44);
+}
+
+.table-covid19-details tbody tr td input:visited {
+    color: rgb(197, 197, 15);
+}
+
+.total-confirmed:hover {
+    background-color: yellow;
+}
+
+.active-cases:hover,
+.active-ratio:hover {
+    background-color: rgb(91, 210, 250);
+}
+
+.recovered-cases:hover,
+.recovered-ratio:hover {
+    background-color: rgb(31, 252, 31);
+}
+
+.death-cases:hover,
+.death-ratio:hover {
+    background-color: rgb(255, 36, 36);
+}
+
+#search-by-state-label {
+    font-size: 1.7rem;
+    margin-right: 0.5rem;
+    display: inline;
+}
+
+#search-by-state {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    display: inline;
+}
+
+#carousel-images-container {
+    height: 60%;
+    width: 99.5%;
+    margin: 0 auto;
+}
+
+#carousel-images-container .image-cards {
+    height: 75vh;
+    width: 100vw;
+}
+
+#world_cases,
+#vaccine_cases,
+#vaccine_cases_pin_wise {
+    margin: 0.5rem auto;
+    width: 95%;
+    border-radius: 0.4rem;
+    border: 1px solid gray;
+    padding: 0.5rem;
+}
+
+#world_cases a h2,
+#vaccine_cases a h2,
+#vaccine_cases_pin_wise a h2 {
+    font-size: 1.6rem;
+}
+
+@media screen and (max-width:900px) {
+    .table-covid19-details-container {
+        width: 100%;
+        margin: 0 auto;
+        overflow-x: auto;
+        padding: 0 auto;
+    }
+    #table1 thead tr td h2 {
+        font-size: 24px;
+    }
+    #table1 #search-by-state-label {
+        font-size: 24px;
+    }
+    #table1 #search-by-state {
+        font-size: 15px;
+        padding: 0.2rem;
+    }
+    #table1 thead tr:last-child td {
+        font-size: 16px;
+    }
+    #table1 tbody td {
+        font-size: 15px;
+    }
+    #table1 thead tr:last-child td:first-child {
+        padding-right: 10rem;
+    }
+    #table1 tfoot td {
+        font-size: 16px;
+    }
+    #table1 thead tr:first-child td {
+        padding: 0;
+    }
+    #carousel-images-container {
+        height: 60%;
+        width: 99.5%;
+        margin: 0 auto;
+    }
+    #carousel-images-container .image-cards {
+        height: 100%;
+        width: 100vw;
+    }
+}

@@ -1,0 +1,212 @@
+/*This Stylesheet is only for Total Number of Cases In India and the vaccination status*/
+
+.info-header {
+    height: auto;
+    width: 92%;
+    padding: 2rem 0;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.total-cases-container {
+    height: auto;
+    width: 50%;
+    margin: 0 auto;
+    border-radius: 0.4rem;
+    background-color: rgb(238, 237, 237);
+}
+
+.cases-card-container {
+    /* border: 1px solid black; */
+    height: auto;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+#cases-statistics {
+    margin: 0.5rem;
+}
+
+.cases-card-container .cases-card {
+    margin: 0.5rem;
+    border: none;
+    padding: 0.3rem;
+    width: auto;
+    border-radius: 0.3rem;
+    height: auto;
+    /* width: 16rem; */
+}
+
+.cases-card-inner-content {
+    height: 3rem;
+    width: auto;
+    text-align: center;
+    /* border: 1px solid black; */
+}
+
+#total-cases-card {
+    background: linear-gradient(to bottom, rgb(68, 68, 255), rgb(148, 207, 226));
+    color: rgb(247, 234, 234);
+}
+
+#recovered-cases-card {
+    background: linear-gradient(to bottom, rgb(2, 172, 2), rgb(136, 241, 136));
+    color: white;
+}
+
+#death-cases-card {
+    background: linear-gradient(to bottom, rgb(247, 43, 43), rgb(247, 132, 132));
+    color: white;
+}
+
+.top-cases-container {
+    height: auto;
+    width: 90%;
+    margin: 0 auto;
+    border-radius: 0.4rem;
+    background-color: rgb(238, 237, 237);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.top-cases {
+    background-color: rgb(212, 212, 11);
+    color: white;
+    width: 30rem;
+    border-radius: 0.4rem;
+}
+
+#active-cases {
+    margin: 0 auto;
+    height: auto;
+    width: 30%;
+    text-align: center;
+}
+
+#active-cases p:nth-child(1) {
+    font-size: 1.4rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid black;
+}
+
+#active-cases p:nth-child(2) {
+    margin-top: -10px;
+    font-size: 1.2rem;
+}
+
+.cases-card h2 {
+    font-size: 1.2rem;
+}
+
+.cases-card h3 {
+    font-size: 0.9rem;
+}
+
+
+/* Vaccination card design starts here */
+
+.total-vaccination-container {
+    height: auto;
+    width: 50%;
+    margin: 0 1rem;
+    background-color: rgb(238, 237, 237);
+    /* border: 1px solid black; */
+    border-radius: 0.4rem;
+}
+
+#vaccine-status-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#vaccine-status-header img {
+    height: 12.2rem;
+    width: 28rem;
+    /* border: 1px solid red; */
+}
+
+#vaccine-status-header div {
+    border: 1px solid black;
+    padding: 2rem 0.5rem;
+    text-align: center;
+    background: linear-gradient(to bottom, rgb(236, 236, 2), rgb(252, 252, 189));
+}
+
+.vaccination-dose-status h2,
+h3 {
+    font-size: 1.5rem;
+}
+
+@media screen and (max-width:900px) {
+    .info-header {
+        flex-wrap: wrap;
+    }
+    .total-cases-container {
+        width: 95%;
+    }
+    .cases-card-container {
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+    }
+    .cases-card-container .cases-card {
+        width: auto;
+        height: auto;
+        font-size: 7px;
+    }
+    .cases-card h2 {
+        font-size: 0.8rem;
+    }
+    .cases-card h3 {
+        font-size: 0.7rem;
+    }
+    #active-cases {
+        width: 60%;
+    }
+}
+
+@media screen and (max-width:900px) {
+    .total-vaccination-container {
+        height: auto;
+        width: fit-content;
+        margin: 0 auto;
+        font-size: 10px;
+    }
+    #vaccine-status-header {
+        height: 50%;
+    }
+    #vaccine-status-header img {
+        height: auto;
+        width: 55%;
+        border-top-left-radius: 0.4rem;
+        border: none;
+    }
+    .vaccination-dose-status {
+        width: fit-content;
+        border-top-right-radius: 0.4rem;
+    }
+    .vaccination-dose-status h2,
+    h3 {
+        font-size: 0.7rem;
+    }
+    .vaccination-dose-status {
+        display: inline;
+    }
+    .sample-test-status h2 {
+        font-size: 1rem;
+        padding: 0.2rem 0.5rem;
+    }
+    .sample-test-status p {
+        padding: 0rem 0.5rem;
+    }
+}

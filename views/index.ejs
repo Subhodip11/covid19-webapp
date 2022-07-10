@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./images/favicon/android-icon-36x36.png" type="image/gif" sizes="16x16">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <title>Covid19 India </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/index.css" />
+    <link rel="stylesheet" href="/index_1.css" />
+
+
+</head>
+
+<body>
+    <%- include('navbar.ejs') %>
+        <div id="carouselExampleIndicators" class="carousel slide w-100" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner" id="carousel-images-container">
+                <div class="carousel-item active">
+                    <img src="./images/iStock-1204033162(3)-1592828634.jpg" class="d-block w-100 image-cards" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/mapImages.jpg" class="d-block w-100 image-cards" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/80874440.png" class="d-block w-100 image-cards" alt="...">
+
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+        </div>
+        <div class="info-header">
+            <div class="total-cases-container">
+                <div id="cases-statistics">
+                    <h1>Overall Case Statistics Of India</h1>
+                    <h3></h3>
+                </div>
+                <div id="active-cases">
+                    <p>
+                        <%=new Intl.NumberFormat('en-US').format(data[0].active)-%>
+                    </p>
+                    <p>Active Cases</p>
+
+                </div>
+                <div class="cases-card-container">
+                    <div class="cases-card" id="total-cases-card">
+                        <h2>Total Cases</h2>
+                        <h3>
+                            <%=new Intl.NumberFormat('en-US').format(data[0].confirmed)-%>
+                        </h3>
+                    </div>
+                    <div class="cases-card" id="recovered-cases-card">
+                        <h2>Recovery Cases</h2>
+                        <h3>
+                            <%=new Intl.NumberFormat('en-US').format(data[0].recovered)-%>
+                        </h3>
+                    </div>
+                    <div class="cases-card" id="death-cases-card">
+                        <h2>Death Cases </h2>
+                        <h3>
+                            <%=new Intl.NumberFormat('en-US').format(data[0].deaths)-%>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="table-covid19-details-container">
+
+            <table class="table-covid19-details" id="table1">
+                <thead>
+                    <tr>
+                        <td colspan="1" style="text-align: center;">
+                            <a href="/" style="text-decoration: none;">Show all Data</a>
+                        </td>
+                        <td colspan="4" style="text-align: center; padding-top: 0.3rem; padding-bottom: 0.3rem;">
+                            <h2>State-Wise Status</h2>
+                        </td>
+                        <td colspan="3">
+                            <form action="/search" method="post" class="d-flex align-items-center justify-content-end">
+                                <input type="text" id="search-by-state" placeholder="Search by state" name="searchValue">
+                                <button type="submit" class="btn btn-primary mx-2">Search</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>States</td>
+                        <td>Total Confirmed</td>
+                        <td style="background-color: rgb(120, 120, 238); color:white;">Active Cases</td>
+                        <td style="background-color: rgb(7, 250, 7); color:white;">Total Recovered</td>
+                        <td style="background-color: rgb(243, 39, 39); color:white;">Total Deaths</td>
+                        <td style="background-color: rgb(120, 120, 238); color:white;">Active ratio</td>
+                        <td style="background-color: rgb(7, 250, 7); color:white;">Discharge Ratio</td>
+                        <td style="background-color: rgb(243, 39, 39); color:white;">Death Ratio</td>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    <% if(data.length>1) %>
+                        <% data.forEach(ele=>{ %>
+                            <% if(!(ele.state.includes('State Unassigned')||ele.state.includes('Total'))) {%>
+                                <tr>
+                                    <form action="/district/<%=ele.state-%>" method="get">
+                                        <td>
+                                            <button type="submit" name="statecode" style="background: transparent; border:none; outline:none;text-align:left;"><%=ele.state-%></button>
+                                        </td>
+                                    </form>
+                                    <td>
+                                        <%=new Intl.NumberFormat('en-US').format(ele.confirmed)-%>
+                                    </td>
+                                    <td>
+                                        <%=new Intl.NumberFormat('en-US').format(ele.active)-%>
+                                    </td>
+                                    <td>
+                                        <%=new Intl.NumberFormat('en-US').format(ele.recovered)-%>
+                                    </td>
+                                    <td>
+                                        <%=new Intl.NumberFormat('en-US').format(ele.deaths)-%>
+                                    </td>
+                                    <td>
+                                        <%=((ele['active'] / ele['confirmed']) * 100).toFixed(2)-%>
+                                    </td>
+                                    <td>
+                                        <%=((ele['recovered'] / (ele['confirmed'])) * 100).toFixed(2)-%>
+                                    </td>
+                                    <td>
+                                        <%=((ele['deaths'] / (ele['confirmed'])) * 100).toFixed(2)-%>
+                                    </td>
+                                </tr>
+                                <% } %>
+                                    <% }) %>
+
+
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td>States</td>
+                        <td>Total Confirmed</td>
+                        <td style="background-color: rgb(120, 120, 238); color:white;">Active Cases</td>
+                        <td style="background-color: rgb(7, 250, 7); color:white;">Total Recovered</td>
+                        <td style="background-color: rgb(243, 39, 39); color:white;">Total Deaths</td>
+                        <td style="background-color: rgb(120, 120, 238); color:white;">Active ratio</td>
+                        <td style="background-color: rgb(7, 250, 7); color:white;">Discharge Ratio</td>
+                        <td style="background-color: rgb(243, 39, 39); color:white;">Death Ratio</td>
+                    </tr>
+                </tfoot>
+            </table>
+
+        </div>
+
+        <p style="color: red; text-align: end;">*Note:- To get particular state data select a particular state</p>
+
+
+
+</body>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+
+
+</html>

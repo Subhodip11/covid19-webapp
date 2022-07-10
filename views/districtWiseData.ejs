@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./images/favicon/android-icon-36x36.png" type="image/gif" sizes="16x16">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <title>District Wise Cases</title>
+</head>
+<style>
+    #search-country {
+        width: auto;
+        height: 2rem;
+        padding: 0 1rem;
+        outline: none;
+    }
+    
+    #search-bar {
+        border: 1px solid black;
+        height: auto;
+        width: auto;
+        text-align: end;
+        padding: 1rem;
+        padding-left: 0;
+        padding-right: 1rem;
+    }
+    
+    #show-all-data {
+        cursor: pointer;
+    }
+    
+    @media screen and (max-width:800px) {
+        #table-container {
+            width: 100%;
+            overflow-x: auto;
+        }
+    }
+</style>
+
+<body>
+    <h2 style="text-align: center;">
+        <%= stateID -%>
+    </h2>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid d-flex flex-row flex-nowrap justify-content-lg-between">
+            <a class="navbar-brand" id="show-all-data" data-bs-toggle="tooltip" data-bs-placement="top" title="Gets you back the original data" href="/district/<%=stateID-%>">Show All Data</a>
+
+
+            <form method="post" action="/district/search/<%=stateID-%>" class="d-flex align-items-center">
+                <input class="form-control me-2" name="searchValue" id="search-country" type="search" placeholder="Search by district Name" aria-label="Search">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+
+        </div>
+        </div>
+    </nav>
+    <div class="container-fluid" id="table-container">
+        <table class="table" id="table1">
+            <thead>
+                <tr>
+                    <th scope="col">District</th>
+                    <th scope="col">Active</th>
+                    <th scope="col">Confirmed</th>
+                    <th scope="col">Recovered</th>
+                    <th scope="col">Deceased</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% data&&data.forEach(ele=>{ %>
+                    <tr>
+                        <td>
+                            <%=ele.state-%>
+                        </td>
+                        <td>
+                            <%=ele.stateData.active-%>
+                        </td>
+                        <td>
+                            <%=ele.stateData.confirmed-%>
+                        </td>
+                        <td>
+                            <%=ele.stateData.recovered-%>
+                        </td>
+                        <td>
+                            <%=ele.stateData.deceased-%>
+                        </td>
+                    </tr>
+                    <%})%>
+                        <% if(!data) { %>
+                            <tr>
+                                <td>
+                                    <h1>State Not Found !</h1>
+                                </td>
+                            </tr>
+                            <% } %>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

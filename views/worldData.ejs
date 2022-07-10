@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./images/favicon/android-icon-36x36.png" type="image/gif" sizes="16x16">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <title>Country Wise Cases Summary</title>
+</head>
+<style>
+    #table-worldData-container {
+        margin: 1rem auto;
+        width: 98%;
+        height: 100vh;
+        overflow-y: auto;
+    }
+    
+    #search-country {
+        width: auto;
+        height: 2rem;
+        padding: 0 1rem;
+        outline: none;
+    }
+    
+    #search-bar {
+        border: 1px solid black;
+        height: auto;
+        width: auto;
+        text-align: end;
+        padding: 1rem;
+        padding-left: 0;
+        padding-right: 1rem;
+    }
+    
+    #show-all-data {
+        cursor: pointer;
+    }
+    
+    .card {
+        display: flex;
+    }
+    
+    @media only screen and (max-width:800px) {
+        #table-worldData-container {
+            width: 97%;
+            overflow-x: auto;
+        }
+        #card {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+</style>
+
+<body>
+    <%- include('navbar.ejs') %>
+
+        <div class="container-fluid d-flex flex-row flex-nowrap justify-content-lg-between">
+            <a class="navbar-brand" id="show-all-data" data-bs-toggle="tooltip" data-bs-placement="top" title="Gets you back the original data">Show All Data</a>
+            <input class="form-control me-2" id="search-country" type="search" placeholder="Search by country name" aria-label="Search">
+        </div>
+        </div>
+
+        <div class="conatiner-fluid" id="table-worldData-container">
+            <table class="table table-striped" id="table1">
+                <thead>
+                    <th class="table-light">#</th>
+                    <th class="table-light">Country</th>
+                    <th class="table-info">Total Cases</th>
+                    <th class="table-warning">Active Cases</th>
+                    <th class="table-success">Total Recovery Cases</th>
+                    <th class="table-danger">Total Death Cases</th>
+                    <th class="table-success">Recovery Proportion</th>
+                    <th class="table-warning">Infection Rate</th>
+                    <th class='table-danger'>Case Fatility Rate</th>
+                </thead>
+                <tbody>
+                    <% data.forEach((ele,index)=>{%>
+                        <tr>
+                            <td>
+                                <%=index+1-%>
+                            </td>
+                            <td>
+                                <%=ele.Country-%>
+                            </td>
+                            <td>
+                                <%=ele.TotalCases-%>
+                            </td>
+                            <td>
+                                <%=ele.ActiveCases-%>
+                            </td>
+                            <td>
+                                <%=ele.TotalRecovered-%>
+                            </td>
+                            <td>
+                                <%=ele.TotalDeaths-%>
+                            </td>
+                            <td>
+                                <%=ele.Recovery_Proporation-%>
+                            </td>
+                            <td>
+                                <%=ele.Infection_Risk-%>
+                            </td>
+                            <td>
+                                <%=ele.Case_Fatality_Rate-%>
+                            </td>
+                        </tr>
+                        <%}) %>
+                </tbody>
+            </table>
+        </div>
+        <!-- News Section -->
+        <h2 class="text-center">World News Section</h2>
+        <div class="container-fluid  " id="card-news-section">
+            <form action="/selectedNewsDetails" method="post" class="d-flex flex-wrap justify-content-start align-items-center">
+                <% newsData.forEach(ele=>{%>
+                    <div class="card mx-2 my-2 d-flex flex-row" class='card'>
+                        <img src="<%=ele.urlToImage-%>" class="card-img w-25 h-25" alt="Source Image Not Found">
+                        <div class="card-body">
+                            <h5 class="card-title text-center" class="headLines">
+                                <%=ele.title-%>
+                            </h5>
+                            <p class="card-text">
+                                <%=ele.content-%><a href='<%=ele.link-%>' style='text-decoration:none; background:transparent; color:blue; outline:none; border:none'>...read more</a></p>
+                        </div>
+                    </div>
+        </div>
+        <%})%>
+            </form>
+            </div>
+</body>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+</html>
